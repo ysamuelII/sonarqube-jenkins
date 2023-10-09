@@ -2,19 +2,19 @@ pipeline {
     agent any
     
     tools {
-        maven 'maven-3.8.6'
+        maven 'maven3'
     }
 
     stages {
         stage('build') {
             steps {
-                sh 'mvn clean package'
+                bat 'mvn clean package'
             }
         }
         stage('Sonar Analysis') {
             steps {
                 withSonarQubeEnv('SonarQube') {
-                    sh 'mvn sonar:sonar'
+                    bat 'mvn sonar:sonar'
                 }
             }
         }
